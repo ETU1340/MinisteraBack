@@ -1,0 +1,33 @@
+create model
+npx sequelize-cli model:generate --name User --attributes firstName:string,lastName:string,email:string
+
+npx sequelize-cli model:generate --name Projets --attributes debut:date,fin:date,titre:string
+
+npx sequelize-cli model:generate --name Status --attributes labele:string
+
+npx sequelize-cli model:generate --name Priority --attributes labele:string
+
+npx sequelize-cli model:generate --name Taches --attributes debut:date,fin:date,titre:string,description:string,output:string,idStatus:integer,idPriority:integer
+
+-----------------------------
+running migration
+npx sequelize-cli db:migrate
+-----------------------------------
+undo migration
+npx sequelize-cli db:migrate:undo
+----------------------------------
+Creating the first Seed
+npx sequelize-cli seed:generate --name demo-user
+npx sequelize-cli seed:generate --name demo-projets
+npx sequelize-cli seed:generate --name demo-status
+npx sequelize-cli seed:generate --name demo-Priority
+npx sequelize-cli seed:generate --name demo-tache
+----------------------------------
+
+running seeds
+npx sequelize-cli db:seed:demo-status
+npx sequelize-cli db:seed:all
+----------------------------------
+
+Undoing Seeds
+npx sequelize-cli db:seed:undo
