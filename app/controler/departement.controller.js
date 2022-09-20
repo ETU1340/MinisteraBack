@@ -1,5 +1,5 @@
 const models = require("../models");
-const DepartementModel = models.departement;
+const DepartementModel = models.Departement;
 exports.getAllDept=(req, res)=> {
 console.log("================================");
 DepartementModel.findAll().then(data => {
