@@ -63,7 +63,6 @@ declare
 $function$
 ;
 
-
 -- TRIGGER ALERTEUR
 
 CREATE TRIGGER alerte AFTER INSERT ON public."Tache" FOR EACH ROW EXECUTE PROCEDURE alerteur();
