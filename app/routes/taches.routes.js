@@ -7,21 +7,15 @@ module.exports = function (app) {
         );
         next();
     });
-    
-    //change status
-    app.get("/api/tache/status",controlerTache.ChangeStatus);
-    
     //post Tache
-    app.post("/api/tache/add",controlerTache.AjoutTache);
-
+    app.post("/api/tache/add", controlerTache.AjoutTache);
     //GET ALL
-    app.get("/api/tache/taches",controlerTache.getAllTache);
+    app.get("/api/taches", controlerTache.getAllTache);
 
     //get by  idprojet
-    app.get("/api/projet/ByIdProjet/:id_projet",controlerTache.TacheByProjet);
+    app.get("/api/tache/ByIdProjet/:id_projet", controlerTache.TacheByProjet);
 
-     //update statut
-     app.put("/api/projet/updateStatut/:tache/:statut",controlerTache.UpdateStatut);
-    
+    //update statut
+    app.put("/api/tache/updateStatut/:tache", controlerTache.UpdateTache);
     // app.get("/api/Tache/Taches",controlerTache.getAllTache);
 }

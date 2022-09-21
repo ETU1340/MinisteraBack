@@ -11,37 +11,38 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-        // this.hasOne(models.Projets);
-        this.hasOne(models.TacheAlerte); 
-        this.belongsTo(models.Projet);
-        this.belongsTo(models.Statut);
-        this.belongsTo(models.Priorite);
+      // this.hasOne(models.Projets);
+      this.hasOne(models.TacheAlerte);
+      this.hasOne(models.Historique);
+      this.belongsTo(models.Projet);
+      this.belongsTo(models.Statut);
+      this.belongsTo(models.Priorite);
 
-        // this.belongsTo(models.Priority);    
-        // this.belongsTo(models.Projets);    
-    }   
+      // this.belongsTo(models.Priority);    
+      // this.belongsTo(models.Projets);    
+    }
 
   }
   Taches.init({
-    id: { 
+    id: {
       type: DataTypes.INTEGER,
-       primaryKey: true,
-       autoIncrement:true
+      primaryKey: true,
+      autoIncrement: true
       //  type: DataTypes.UUID,
       //  defaultValue: DataTypes.UUIDV4
-      },
-    debut: {type:DataTypes.DATE,allowNull:false},
-    fin:{type:DataTypes.DATE,allowNull:false},
+    },
+    debut: { type: DataTypes.DATE, allowNull: false },
+    fin: { type: DataTypes.DATE, allowNull: false },
     // titre: DataTypes.STRING,
-    description:{type:DataTypes.STRING,allowNull:false},
-    output: {type:DataTypes.STRING,allowNull:false},
-    estAlerteur: {type:DataTypes.BOOLEAN,allowNull:false}
+    description: { type: DataTypes.STRING, allowNull: false },
+    output: { type: DataTypes.STRING, allowNull: false },
+    estAlerteur: { type: DataTypes.BOOLEAN, allowNull: false }
   }, {
     createdAt: false,
     updatedAt: false,
     sequelize,
     modelName: 'Tache',
-    freezeTableName:true,
+    freezeTableName: true,
   });
   return Taches;
 };

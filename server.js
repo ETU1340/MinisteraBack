@@ -7,8 +7,8 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 var corsOptions = {
-    // origin: "http://localhost:3000"
-    origin: "http://localhost:19006"
+    origin: "http://localhost:3000"
+    // origin: "http://localhost:19006"
 };
 
 app.use(cors(corsOptions));
@@ -227,8 +227,6 @@ const db = require("./app/models");
 // db.sequelize.sync({ force: true }).then(() => {
 //     console.log('synchronysation des models');
 // })
-
-
 
 const PORT = 8080;
 // const PORT = 3001;
