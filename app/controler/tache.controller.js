@@ -23,29 +23,41 @@ exports.getAllTache = (req, res) => {
     });
 };
 
+
 exports.AjoutTache = (req, res) => {
   TacheModel.create({
+    ProjetId: req.body.ProjetId,
+    PrioriteId: req.body.PrioriteId,
     titre: req.body.titre,
     description: req.body.description,
     output: req.body.output,
     debut: req.body.debut,
     fin: req.body.fin,
     StatutId: 1,
-    estAlerteur: true
+    estAlerteur: req.body.estAlerteur
   }).then(res.send({ message: "Task was registered successfully!" }))
     .catch(err => {
-      res.status(500).send({ message: err.message });
+      console.log(err);
+      // res.status(500).send({ message: err.message });
     });
-}
-
-// exports.AjoutTache=(req, res)=> {
-// TacheModel.Delete
-// };
+};
 
 exports.TacheByProjet = (req, res) => {
   console.log("================================");
   TacheModel.findAll({ where: { ProjetId: req.params.id_projet } }).then(data => {
-    res.send(data);
+    // res.send(data);
+    let todo = [];
+    let inProgress = [];
+    let doing = [];
+    data.map(tache => {
+      if (tache.dataValues.StatutId === 1) { todo.push(tache.dataValues) };
+      if (tache.dataValues.StatutId === 2) inProgress.push(tache.dataValues);
+      if (tache.dataValues.StatutId === 3) doing.push(tache.dataValues);
+    })
+    let dataFormater = { todo, inProgress, doing }
+    res.send(dataFormater);
+
+
   })
     .catch(err => {
       res.status(500).send({
@@ -54,8 +66,6 @@ exports.TacheByProjet = (req, res) => {
       });
     });
 };
-
-
 
 exports.UpdateTache = async (req, res) => {
   // console.log(req.params);
@@ -78,3 +88,26 @@ exports.UpdateTache = async (req, res) => {
       res.status(500).send({ message: err.message });
     });
 };
+
+exports.UpdateTacheWeb = async (req, res) => {
+  // console.log(req.params);
+  console.log(req.body.StatutId);
+  await TacheModel.update(
+    {
+      StatutId: req.body.StatutId,
+      debut: req.body.debut,
+      fin: req.body.fin,
+      description: req.body.description,
+      output: req.body.output,
+      estAlerteur: req.body.estAlerteur,
+      ProriteId: req.body.ProriteId
+    },
+    { where: { id: req.body.id } }
+  )
+    .then(await res.send({ message: "Task was update successfully!" }))
+    .catch(err => {
+      // console.log('------------', err)
+      res.status(500).send({ message: err.message });
+    });
+};
+

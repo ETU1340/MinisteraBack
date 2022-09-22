@@ -18,4 +18,6 @@ module.exports = function (app) {
     //update statut
     app.put("/api/tache/updateStatut/:tache", controlerTache.UpdateTache);
     // app.get("/api/Tache/Taches",controlerTache.getAllTache);
+    app.put("/api/tache/updateStatut", controlerTache.UpdateTacheWeb);
+    // app.get("/api/Tache/Taches",controlerTache.getAllTache);
 }
