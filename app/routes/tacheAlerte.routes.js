@@ -7,12 +7,13 @@ module.exports = function (app) {
         );
         next();
     });
-    
+
 
     //post Tache Alerte
-    app.post("/api/tacheAlerte/add",controlerTacheAlerte.AjoutTacheAlerte);
 
+    //tokony mbola misy departement
+    app.get("/api/Alerte/", controlerTacheAlerte.getAlertBydepartement);
     //GET ALL
-    app.get("/api/tacheAlerte/TacheAlertebyDate",controlerTacheAlerte.TacheAlerteByDate);
+    // app.get("/api/tacheAlerte/TacheAlertebyDate", controlerTacheAlerte.TacheAlerteByDate);
 
 }

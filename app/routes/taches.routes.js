@@ -15,9 +15,15 @@ module.exports = function (app) {
     //get by  idprojet
     app.get("/api/tache/ByIdProjet/:id_projet", controlerTache.TacheByProjet);
 
-    //update statut
+    //update statut mobile?
     app.put("/api/tache/updateStatut/:tache", controlerTache.UpdateTache);
     // app.get("/api/Tache/Taches",controlerTache.getAllTache);
-    app.put("/api/tache/updateStatut", controlerTache.UpdateTacheWeb);
+
+
+    //update  web
+    app.put("/api/tache/update", controlerTache.UpdateTacheWeb);
     // app.get("/api/Tache/Taches",controlerTache.getAllTache);
+    //delete
+    app.post("/api/tache/delete", controlerTache.DeleteTache);
+
 }

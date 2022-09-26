@@ -54,7 +54,7 @@ configs =(
 
 dateAlerte =(
     select
-        date (NEW.debut) + (configs || ' hours') :: INTERVAL
+        date (NEW.debut) + (configs || ' days') :: INTERVAL
 );
 
 INSERT INTO

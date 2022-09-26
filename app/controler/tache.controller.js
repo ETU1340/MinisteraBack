@@ -23,7 +23,6 @@ exports.getAllTache = (req, res) => {
     });
 };
 
-
 exports.AjoutTache = (req, res) => {
   TacheModel.create({
     ProjetId: req.body.ProjetId,
@@ -35,7 +34,7 @@ exports.AjoutTache = (req, res) => {
     fin: req.body.fin,
     StatutId: 1,
     estAlerteur: req.body.estAlerteur
-  }).then(res.send({ message: "Task was registered successfully!" }))
+  }).then(rep => res.send(rep))
     .catch(err => {
       console.log(err);
       // res.status(500).send({ message: err.message });
@@ -91,7 +90,7 @@ exports.UpdateTache = async (req, res) => {
 
 exports.UpdateTacheWeb = async (req, res) => {
   // console.log(req.params);
-  console.log(req.body.StatutId);
+  // console.log(req.body.StatutId);
   await TacheModel.update(
     {
       StatutId: req.body.StatutId,
@@ -110,4 +109,15 @@ exports.UpdateTacheWeb = async (req, res) => {
       res.status(500).send({ message: err.message });
     });
 };
+
+
+exports.DeleteTache = (req, res) => {
+  TacheModel.destroy(
+    { where: { id: req.body.id } }
+  )
+    .then(result => res.send({ result }))
+    .catch(err => {
+      res.status(500).send({ message: err.message });
+    });
+}
 
