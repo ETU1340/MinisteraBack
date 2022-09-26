@@ -28,16 +28,18 @@ TacheModel.findAll()
 
 exports.AjoutTache=(req, res)=> {
   TacheModel.create({
-    titre: req.body.titre,
-    description: req.body.description,
-    output: req.body.output,
-    debut: req.body.debut,
-    fin: req.body.fin,
+    titre: req.params.titre,
+    description: req.params.description,
+    output: req.params.output,
+    debut: req.params.debut,
+    fin: req.params.fin,
     StatutId: 1,
+    PrioriteId:req.params.priorite,
+    ProjetId: req.params.projet,
     estAlerteur: true
   }).then(res.send({ message: "Task was registered successfully!" }))
   .catch(err => {
-    res.status(500).send({message:err.message });
+   console.log(err.message );
   });
 }
 
@@ -66,15 +68,31 @@ exports.TacheByProjet=(req, res)=> {
 
 
   exports.UpdateStatut=(req, res)=> {
-    console.log(req.params.statut);
-    console.log(req.params.tache);
+  
     TacheModel.update(
-     {StatutId: req.params.statut},
+      {titre: req.params.titre,
+     description: req.params.description,
+     output: req.params.output,
+     debut: req.params.debut,
+     fin: req.params.fin,
+     estAlerteur: req.params.alerteur,
+     StatutId: req.params.statut},
      {where: { id: req.params.tache }}
+
+     
     )
     .then(res.send({ message: "Task was update successfully!" }))
     .catch(err => {
-      res.status(500).send({message:err.message });
+    console.log(err.message) ;
     });
   };
   
+
+  exports.DeleteTache=(req, res)=> {
+    TacheModel.delete(
+      {where: { id: req.params.tache }}
+    ).then(res.send({ message: "Task was deleted successfully!" }))
+    .catch(err => {
+      res.status(500).send({message:err.message });
+    });
+  }

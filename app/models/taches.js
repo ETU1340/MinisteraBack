@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     debut: {type:DataTypes.DATE,allowNull:false},
     fin:{type:DataTypes.DATE,allowNull:false},
-    // titre: DataTypes.STRING,
+    titre:{type:DataTypes.STRING,allowNull:false},
     description:{type:DataTypes.STRING,allowNull:false},
     output: {type:DataTypes.STRING,allowNull:false},
     estAlerteur: {type:DataTypes.BOOLEAN,allowNull:false}

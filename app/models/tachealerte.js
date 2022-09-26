@@ -2,7 +2,9 @@
 const {
   Model
 } = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
+const withDateNoTz = require('sequelize-date-no-tz-postgres');
+module.exports = (sequelize, SequelizeDataTypes) => {
+  const DataTypes = withDateNoTz(SequelizeDataTypes);
   class TacheAlerte extends Model {
     /**
      * Helper method for defining associations.
@@ -15,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   TacheAlerte.init({
-    dateAlerte: {type:DataTypes.DATE,allowNull:false}
+    dateAlerte: {type:DataTypes.DATE_NO_TZ,allowNull:false}
   }, {
     createdAt: false,
     updatedAt: false,

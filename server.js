@@ -24,9 +24,9 @@ require('./app/routes/taches.routes')(app);
 require('./app/routes/historique.routes')(app);
 require('./app/routes/region.routes')(app);
 require('./app/routes/departement.routes')(app);
-// require('./app/routes/priority.routes')(app);
-// require('./app/routes/status.routes')(app);
-const db = require("./app/models");
+require('./app/routes/priorite.routes')(app);
+require('./app/routes/tacheAlerte.routes')(app);
+// const db = require("./app/models");
 // db.sequelize.sync({ force: true }).then(() => {
 //     console.log('synchronysation des models');
 //         db.Region.create({
@@ -73,13 +73,13 @@ const db = require("./app/models");
 //             {id:3,labele:'Finished'}
 //         );
 //        db.Priorite.create(
-//             {id:1,labele:'Low',config:'1'}
+//             {id:1,labele:'Bas',config:'2'}
 //         );
 //        db.Priorite.create(
-//             {id:2,labele:'Medium',config:'2'}
+//             {id:2,labele:'Normal',config:'12'}
 //         );
 //        db.Priorite.create(
-//             {id:3,labele:'Hight',config:'3'}
+//             {id:3,labele:'Haut',config:'24'}
 //         );
 //         db.Projet.create({
 //         id: 1,
@@ -149,6 +149,7 @@ const db = require("./app/models");
 
 //         db.Tache.create(
 //             {
+//                 id: 1,
 //                 debut:new Date(),
 //                 fin:new Date(),
 //                 titre:'ceci sdfest le titre de msdfa tache',
@@ -166,6 +167,7 @@ const db = require("./app/models");
 
 //    db.Tache.create(
 //             {
+//                 id: 2,
 //                 debut:new Date(),
 //                 fin:new Date(),
 //                 titre:'ceci sdfest le titre de msdfa tache',
@@ -181,6 +183,7 @@ const db = require("./app/models");
 //     );
 //     db.Tache.create(
 //         {
+//             id: 3,
 //             debut:new Date(),
 //             fin:new Date(),
 //             titre:'ceci est le titre de ma tache',
@@ -195,6 +198,7 @@ const db = require("./app/models");
 //         });
 //         db.Tache.create(
 //         {
+//             id: 4,
 //             debut:new Date(),
 //             fin:new Date(),
 //             titre:'new task 1',
@@ -208,6 +212,7 @@ const db = require("./app/models");
 //             longitude:47.043
 //         });
 //         db.Tache.create({
+//             id: 5,
 //             debut:new Date(),
 //             fin:new Date(),
 //             titre:'zxcz x ceci est le titre de ma tache',

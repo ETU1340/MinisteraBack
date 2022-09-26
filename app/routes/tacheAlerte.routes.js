@@ -9,10 +9,7 @@ module.exports = function (app) {
     });
     
 
-    //post Tache Alerte
-    app.post("/api/tacheAlerte/add",controlerTacheAlerte.AjoutTacheAlerte);
-
     //GET ALL
-    app.get("/api/tacheAlerte/TacheAlertebyDate",controlerTacheAlerte.TacheAlerteByDate);
+    app.get("/api/tacheAlerte/TacheAlerte",controlerTacheAlerte.FindAlerte);
 
 }

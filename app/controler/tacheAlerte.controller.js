@@ -1,6 +1,6 @@
 const models = require("../models");
-
-const TacheAlerteModel = models.tachealerte;
+const { QueryTypes } = require('sequelize');
+const TacheAlerteModel = models.TacheAlerte;
 
 
 exports.AjoutTacheAlerte=(req, res)=> {
@@ -14,32 +14,23 @@ exports.AjoutTacheAlerte=(req, res)=> {
 }
 
 
-
-exports.TacheAlerteByDate=(req, res)=> {
-  console.log("================================");
-  TacheAlerteModel.findAll({ where: { DateAlerte: req.params.dateAlerte }}).then(data => {
+exports.FindAlerte=(req, res)=> {
+  models.sequelize.query( ` SELECT * FROM "public"."TacheAlerte" join "public"."Tache" on "public"."Tache"."id"="public"."TacheAlerte"."TacheId" where "dateAlerte">=CURRENT_DATE and "dateAlerte"< CURRENT_DATE + integer '1' `,
+  {
+    type: QueryTypes.SELECT
+  }).then(data => {
       res.send(data);
+      
     })
     .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving tutorials."
-          });
-      });
+     console.log(err.message)
+      })
+    // .finally( models.sequalize.close())
+
+    
   };
+  
   
 
 
-  exports.UpdateStatut=(req, res)=> {
-    console.log(req.params.statut);
-    console.log(req.params.tache);
-    TacheAlerteModel.update(
-     {StatutId: req.params.statut},
-     {where: { id: req.params.tache }}
-    )
-    .then(res.send({ message: "Task was update successfully!" }))
-    .catch(err => {
-      res.status(500).send({message:err.message });
-    });
-  };
   

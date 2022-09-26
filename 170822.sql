@@ -33,9 +33,6 @@ $function$
 --TRIGGER cle_metier
 CREATE TRIGGER makeid BEFORE INSERT ON public.users FOR EACH ROW EXECUTE PROCEDURE updateid();
 
-
-
-
 -- FUNCTION ALERTEUR
 
 CREATE OR REPLACE FUNCTION public.alerteur()
@@ -51,7 +48,7 @@ declare
         IF NEW."estAlerteur" is true THEN
 			id_tache=NEW.id;
 			configs=(select config from "Priorite" where id=NEW."PrioriteId");
-            dateAlerte=(select date (NEW.debut)  + (configs || ' hours')::INTERVAL);
+            dateAlerte=(select NEW.debut - (configs || ' hours')::INTERVAL);
             INSERT INTO "TacheAlerte" ("TacheId","dateAlerte") values (id_tache,dateAlerte);
 			RETURN NEW;
 		ELSE 	
@@ -66,7 +63,7 @@ $function$
 
 -- TRIGGER ALERTEUR
 
-CREATE TRIGGER alerte AFTER INSERT ON public."Tache" FOR EACH ROW EXECUTE PROCEDURE alerteur();
+CREATE TRIGGER alerte AFTER INSERT OR UPDATE ON public."Tache" FOR EACH ROW EXECUTE PROCEDURE alerteur();
 
 
 
@@ -79,3 +76,4 @@ npx sequelize-cli model:generate --name region --attributes intitule:string
 npx sequelize-cli model:generate --name departement --attributes intitule:string
 npx sequelize-cli model:generate --name tacheAlerte --attributes id_tache:string,dateAlerte:date
 
+ SELECT * FROM "public"."TacheAlerte" where "dateAlerte">=CURRENT_DATE and "dateAlerte"< CURRENT_DATE + integer '1' 
