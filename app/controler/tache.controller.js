@@ -1,5 +1,6 @@
 const models = require("../models");
 const TacheModel = models.Tache;
+const Commentaire = models.Commentaire;
 exports.getAllTache = (req, res) => {
   // return un instance de tache
   TacheModel.findAll()
@@ -88,10 +89,10 @@ exports.UpdateTache = async (req, res) => {
     });
 };
 
-exports.UpdateTacheWeb = async (req, res) => {
+exports.UpdateTacheWeb = (req, res) => {
   // console.log(req.params);
-  // console.log(req.body.StatutId);
-  await TacheModel.update(
+  // console.log('ilay nandrasan', req.body.PrioriteId);
+  TacheModel.update(
     {
       StatutId: req.body.StatutId,
       debut: req.body.debut,
@@ -99,14 +100,15 @@ exports.UpdateTacheWeb = async (req, res) => {
       description: req.body.description,
       output: req.body.output,
       estAlerteur: req.body.estAlerteur,
-      ProriteId: req.body.ProriteId
+      PrioriteId: req.body.PrioriteId
     },
     { where: { id: req.body.id } }
   )
-    .then(await res.send({ message: "Task was update successfully!" }))
+    .then(rep => res.send(rep))
     .catch(err => {
       // console.log('------------', err)
-      res.status(500).send({ message: err.message });
+      console.log(err)
+      // res.status(500).send({ message: err.message });
     });
 };
 
@@ -115,7 +117,13 @@ exports.DeleteTache = (req, res) => {
   TacheModel.destroy(
     { where: { id: req.body.id } }
   )
-    .then(result => res.send({ result }))
+    .then(result => {
+      Commentaire.destroy(
+        { where: { TacheId: req.body.id } }
+      )
+      res.send({ result })
+    }
+    )
     .catch(err => {
       res.status(500).send({ message: err.message });
     });

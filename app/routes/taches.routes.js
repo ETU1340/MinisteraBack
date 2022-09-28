@@ -23,6 +23,7 @@ module.exports = function (app) {
     //update  web
     app.put("/api/tache/update", controlerTache.UpdateTacheWeb);
     // app.get("/api/Tache/Taches",controlerTache.getAllTache);
+
     //delete
     app.post("/api/tache/delete", controlerTache.DeleteTache);
 

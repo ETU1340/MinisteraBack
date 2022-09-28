@@ -18,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //route 
 require('./app/routes/tacheAlerte.routes')(app);
+require('./app/routes/commentaire.routes')(app);
 
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
@@ -28,6 +29,8 @@ require('./app/routes/departement.routes')(app);
 // require('./app/routes/priority.routes')(app);
 // require('./app/routes/status.routes')(app);
 const db = require("./app/models");
+// db.sequelize.sync().then(console.log('synchronisation'));
+
 // db.sequelize.sync({ force: true }).then(() => {
 //     console.log('synchronysation des models');
 //     db.Region.create({
@@ -227,6 +230,18 @@ const db = require("./app/models");
 // db.sequelize.sync({ force: true }).then(() => {
 //     console.log('synchronysation des models');
 // })
+
+
+const { QueryTypes } = require('sequelize');
+// const sequelize = require("sequelize");
+
+// async function query() {
+//     const records = await db.sequelize.query('insert into public.Tache'$tache, {
+//         type: QueryTypes.SELECT
+//     });
+//     console.log(JSON.stringify(records[0], null, 2));
+// }
+// query();
 
 const PORT = 8080;
 // const PORT = 3001;
