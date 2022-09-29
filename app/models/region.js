@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Region.init({
+    id:{ type: DataTypes.INTEGER, primaryKey: true, autoIncrement:true },
     intitule: {type:DataTypes.STRING,allowNull:false}
   }, {
     createdAt: false,

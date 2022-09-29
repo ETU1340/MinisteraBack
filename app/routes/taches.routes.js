@@ -12,7 +12,7 @@ module.exports = function (app) {
     app.get("/api/tache/status",controlerTache.ChangeStatus);
     
     //post Tache
-    app.post("/api/tache/add/:titre/:description/:output/:debut/:fin/:priorite/:projet",controlerTache.AjoutTache);
+    app.post("/api/tache/add/:titre/:description/:output/:debut/:fin/:priorite/:projet/:alerteur",controlerTache.AjoutTache);
 
     //GET ALL
     app.get("/api/tache/taches",controlerTache.getAllTache);
@@ -24,6 +24,6 @@ module.exports = function (app) {
      app.put("/api/tache/updateStatut/:tache/:statut/:titre/:description/:output/:debut/:fin/:alerteur",controlerTache.UpdateStatut);
     
      //delete statut
-     app.put("/api/tache/deleteStatut/:tache",controlerTache.DeleteTache);
+     app.delete("/api/tache/deleteTache/:tache",controlerTache.DeleteTache);
     
 }

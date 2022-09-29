@@ -7,8 +7,8 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 var corsOptions = {
-    // origin: "http://localhost:3001"
     origin: "http://localhost:19006"
+    // origin: "http://192.168.1.62:19006"
 };
 
 app.use(cors(corsOptions));
@@ -30,27 +30,27 @@ require('./app/routes/tacheAlerte.routes')(app);
 // db.sequelize.sync({ force: true }).then(() => {
 //     console.log('synchronysation des models');
 //         db.Region.create({
-//             id: 1,
+           
 //             intitule: "Analamanga"
 //         });
     
 //         db.Region.create({
-//             id: 2,
+            
 //             intitule: "Diana"
 //         });
     
 //         db.Region.create({
-//             id: 3,
+           
 //             intitule: "Sava"
 //         });
     
 //         db.Region.create({
-//             id: 4,
+          
 //             intitule: "Boeny"
 //         });
     
 //         db.Region.create({
-//             id: 5,
+            
 //             intitule: "Menabe"
 //         });
     
@@ -63,26 +63,26 @@ require('./app/routes/tacheAlerte.routes')(app);
 //         });
     
 //         db.Statut.create(
-//             {id:1,labele:'Todo'},
+//             {labele:'Todo'},
 //         );
 
 //        db.Statut.create(
-//             {id:2,labele:'In Progress'},
+//             {labele:'In Progress'},
 //         );
 //        db.Statut.create(
-//             {id:3,labele:'Finished'}
+//             {labele:'Finished'}
 //         );
 //        db.Priorite.create(
-//             {id:1,labele:'Bas',config:'2'}
+//             {labele:'Bas',config:'2'}
 //         );
 //        db.Priorite.create(
-//             {id:2,labele:'Normal',config:'12'}
+//             {labele:'Normal',config:'12'}
 //         );
 //        db.Priorite.create(
-//             {id:3,labele:'Haut',config:'24'}
+//             {labele:'Haut',config:'24'}
 //         );
 //         db.Projet.create({
-//         id: 1,
+      
 //         titre: "PIPELINE",
 //         debut:new Date(),
 //         fin:new Date(),
@@ -93,7 +93,7 @@ require('./app/routes/tacheAlerte.routes')(app);
 //         });
 
 //         db.Projet.create({
-//         id: 2,
+     
 //         titre: "BARRAGE",
 //         debut:new Date(),
 //         fin:new Date(),
@@ -104,7 +104,7 @@ require('./app/routes/tacheAlerte.routes')(app);
 //         });
 
 //         db.Projet.create({
-//         id: 3,
+       
 //         titre: "HYGIENE",
 //         debut:new Date(),
 //         fin:new Date(),
@@ -115,7 +115,7 @@ require('./app/routes/tacheAlerte.routes')(app);
 //         });
 
 //         db.Projet.create({
-//         id: 4,
+      
 //         titre: "TRANSPORT",
 //         debut:new Date(),
 //         fin:new Date(),
@@ -126,7 +126,7 @@ require('./app/routes/tacheAlerte.routes')(app);
 //         });
         
 //         db.Projet.create({
-//         id: 5,
+      
 //         titre: "FORMATION",
 //         debut:new Date(),
 //         fin:new Date(),
@@ -137,7 +137,7 @@ require('./app/routes/tacheAlerte.routes')(app);
 //         });
 
 //         db.Projet.create({
-//         id: 6,
+ 
 //         titre: "CONSTRUCTION",
 //         debut:new Date(),
 //         fin:new Date(),
@@ -149,7 +149,7 @@ require('./app/routes/tacheAlerte.routes')(app);
 
 //         db.Tache.create(
 //             {
-//                 id: 1,
+             
 //                 debut:new Date(),
 //                 fin:new Date(),
 //                 titre:'ceci sdfest le titre de msdfa tache',
@@ -167,7 +167,7 @@ require('./app/routes/tacheAlerte.routes')(app);
 
 //    db.Tache.create(
 //             {
-//                 id: 2,
+             
 //                 debut:new Date(),
 //                 fin:new Date(),
 //                 titre:'ceci sdfest le titre de msdfa tache',
@@ -183,7 +183,7 @@ require('./app/routes/tacheAlerte.routes')(app);
 //     );
 //     db.Tache.create(
 //         {
-//             id: 3,
+       
 //             debut:new Date(),
 //             fin:new Date(),
 //             titre:'ceci est le titre de ma tache',
@@ -198,7 +198,7 @@ require('./app/routes/tacheAlerte.routes')(app);
 //         });
 //         db.Tache.create(
 //         {
-//             id: 4,
+    
 //             debut:new Date(),
 //             fin:new Date(),
 //             titre:'new task 1',
@@ -212,7 +212,7 @@ require('./app/routes/tacheAlerte.routes')(app);
 //             longitude:47.043
 //         });
 //         db.Tache.create({
-//             id: 5,
+   
 //             debut:new Date(),
 //             fin:new Date(),
 //             titre:'zxcz x ceci est le titre de ma tache',

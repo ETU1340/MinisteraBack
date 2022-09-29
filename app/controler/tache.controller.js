@@ -27,6 +27,15 @@ TacheModel.findAll()
 };
 
 exports.AjoutTache=(req, res)=> {
+  console.log('titre:'+req.params.titre);
+  console.log('description:'+ req.params.description);
+  console.log('output:'+req.params.output);
+  console.log('debut:'+req.params.debut);
+  console.log('fin:'+req.params.fin)
+  console.log('StatutId:1')
+  console.log('PrioriteId:'+req.params.priorite)
+  console.log('ProjetId:'+req.params.projet,)
+  console.log('alerteur:'+ req.params.alerteur)
   TacheModel.create({
     titre: req.params.titre,
     description: req.params.description,
@@ -36,7 +45,7 @@ exports.AjoutTache=(req, res)=> {
     StatutId: 1,
     PrioriteId:req.params.priorite,
     ProjetId: req.params.projet,
-    estAlerteur: true
+    estAlerteur: req.params.alerteur
   }).then(res.send({ message: "Task was registered successfully!" }))
   .catch(err => {
    console.log(err.message );
@@ -89,8 +98,7 @@ exports.TacheByProjet=(req, res)=> {
   
 
   exports.DeleteTache=(req, res)=> {
-    TacheModel.delete(
-      {where: { id: req.params.tache }}
+    TacheModel.destroy({where: { id: req.params.tache }}
     ).then(res.send({ message: "Task was deleted successfully!" }))
     .catch(err => {
       res.status(500).send({message:err.message });

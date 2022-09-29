@@ -17,6 +17,7 @@ module.exports = (sequelize, SequelizeDataTypes) => {
     }
   }
   TacheAlerte.init({
+    id:{ type: DataTypes.INTEGER, primaryKey: true, autoIncrement:true },
     dateAlerte: {type:DataTypes.DATE_NO_TZ,allowNull:false}
   }, {
     createdAt: false,
