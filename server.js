@@ -17,8 +17,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //route 
-require('./app/routes/tacheAlerte.routes')(app);
+require('./app/routes/sousTache.routes')(app);
 require('./app/routes/commentaire.routes')(app);
+require('./app/routes/tacheAlerte.routes')(app);
 
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
@@ -29,6 +30,7 @@ require('./app/routes/departement.routes')(app);
 // require('./app/routes/priority.routes')(app);
 // require('./app/routes/status.routes')(app);
 const db = require("./app/models");
+// db.sequelize.sync({ force: true });
 // db.sequelize.sync().then(console.log('synchronisation'));
 
 // db.sequelize.sync({ force: true }).then(() => {

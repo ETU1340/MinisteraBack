@@ -49,12 +49,25 @@ exports.TacheByProjet = (req, res) => {
     let todo = [];
     let inProgress = [];
     let doing = [];
+    let retard = [];
+    // console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxx', new Date());
     data.map(tache => {
-      if (tache.dataValues.StatutId === 1) { todo.push(tache.dataValues) };
-      if (tache.dataValues.StatutId === 2) inProgress.push(tache.dataValues);
+      if (tache.dataValues.StatutId === 1) {
+        todo.push(tache.dataValues)
+        if (tache.dataValues.debut <= new Date()) {  //controle des retards
+          retard.push(tache.dataValues);
+          // console.log(tache.dataValues.debut);
+        }
+      };
+      if (tache.dataValues.StatutId === 2) {
+        // inProgress.avancement = (((new Date() - tache.dataValues.debut) * 100) / (tache.dataValues.fin - tache.dataValues.debbut)) / 100;
+        inProgress.push(tache.dataValues);
+        // console.log('IIIIIIIINNNNNNNNNNNNNNNn', inProgress);
+      }
       if (tache.dataValues.StatutId === 3) doing.push(tache.dataValues);
     })
-    let dataFormater = { todo, inProgress, doing }
+
+    let dataFormater = { retard, todo, inProgress, doing }
     res.send(dataFormater);
 
 

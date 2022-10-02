@@ -15,12 +15,12 @@ module.exports = (sequelize, DataTypes) => {
       this.hasOne(models.TacheAlerte);
       this.hasOne(models.Historique);
       this.hasOne(models.Commentaire);
+      this.hasOne(models.SousTache);
+
 
       this.belongsTo(models.Projet);
       this.belongsTo(models.Statut);
       this.belongsTo(models.Priorite);
-
-
       // this.belongsTo(models.Priority);    
       // this.belongsTo(models.Projets);    
     }
