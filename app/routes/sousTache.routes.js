@@ -7,4 +7,8 @@ module.exports = function (app) {
 
     //save SousTache
     app.post("/api/sousTache/save", controlerSousTache.saveSousTache);
+    //update
+    app.put("/api/sousTache/update", controlerSousTache.updateSousTache);
+    //delete
+    app.put("/api/sousTache/update", controlerSousTache.updateSousTache);
 }

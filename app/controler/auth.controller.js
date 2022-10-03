@@ -19,26 +19,28 @@ exports.signup = (req, res) => {
         password: bcrypt.hashSync(req.body.password, 8)
     })
         .then(user => {
-            if (req.body.roles) {
-                RoleModel.findAll({
-                    where: {
-                        name: {
-                            [Op.or]: req.body.roles
-                        }
-                    }
-                }).then(roles => {
-                    user.setRoles(roles).then(() => {
-                        res.send({ message: "User was registered successfully!" });
-                    });
-                });
-            } else {
-                // user role = 1
-                user.setRoles([1]).then(() => {
-                    res.send({ message: "User was registered successfully!" });
-                });
-            }
+            res.send(user);
+            // // RoleUserModel.
+            // if (req.body.roles) {
+            //     RoleModel.findAll({
+            //         where: {
+            //             name: {
+            //                 [Op.or]: req.body.roles
+            //             }
+            //         }
+            //     }).then(roles => {
+            //         user.setRoles(roles).then(() => {
+            //             res.send({ message: "User was registered successfully!" });
+            //         });
+            //     });
+            // } else {
+            //     // user role = 1
+            //     user.setRoles([1]).then(() => {
+            //         res.send({ message: "User was registered successfully!" });
+            //     });
+            // }
         })
-        
+
         .catch(err => { // console.log('EEEEEEEEEEERRRRRRRRRRRRRRRRR');
             res.status(500).send({ message: err.message });
         });
