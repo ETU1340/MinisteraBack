@@ -1,6 +1,8 @@
 const models = require("../models");
 const TacheModel = models.Tache;
 const Commentaire = models.Commentaire;
+const SousTache = models.SousTache;
+
 exports.getAllTache = (req, res) => {
   // return un instance de tache
   TacheModel.findAll()
@@ -50,20 +52,17 @@ exports.TacheByProjet = (req, res) => {
     let inProgress = [];
     let doing = [];
     let retard = [];
-    // console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxx', new Date());
+    let avancementAndNumber = [];
+
     data.map(tache => {
       if (tache.dataValues.StatutId === 1) {
         todo.push(tache.dataValues)
-        if (tache.dataValues.debut <= new Date()) {  //controle des retards
+        if (tache.dataValues.debut <= new Date()) {
           retard.push(tache.dataValues);
-          // console.log(tache.dataValues.debut);
         }
       };
-      if (tache.dataValues.StatutId === 2) {
-        // inProgress.avancement = (((new Date() - tache.dataValues.debut) * 100) / (tache.dataValues.fin - tache.dataValues.debbut)) / 100;
+      if (tache.dataValues.StatutId === 2)
         inProgress.push(tache.dataValues);
-        // console.log('IIIIIIIINNNNNNNNNNNNNNNn', inProgress);
-      }
       if (tache.dataValues.StatutId === 3) doing.push(tache.dataValues);
     })
 

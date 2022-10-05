@@ -13,7 +13,6 @@ exports.getSousTacheByTache = (req, res) => {
             res.send(err);
         })
 };
-
 exports.saveSousTache = (req, res) => {
     // console.log('HHHHHHHHHHHHHHHHHh', req.body.labele);
     SousTacheModel.create({
@@ -28,7 +27,6 @@ exports.saveSousTache = (req, res) => {
         res.send(er);
     })
 };
-
 exports.updateSousTache = (req, res) => {
     SousTacheModel.update(
         { isChecked: req.body.isChecked },
@@ -39,8 +37,6 @@ exports.updateSousTache = (req, res) => {
         res.send(er);
     })
 };
-
-
 exports.delete = (req, res) => {
     SousTacheModel.destroy(
         { where: { id: req.body.id } }
@@ -49,5 +45,30 @@ exports.delete = (req, res) => {
     }).catch(er => {
         res.send(er);
     })
+};
+
+
+///getavancement tokny atao any am base
+exports.getAvancement = (req, res) => {
+    ///mandray id tache dia mireturn number soustask sy avancement     
+    // console.log('PPPPPPPPPPPPPPPPPPPPPPPPPppp', req.params.TacheId);
+    SousTacheModel.findAll(
+        { where: { TacheId: req.params.TacheId } }
+    ).then(rep => {
+        let terminer = 0;
+        let avancement = 0;
+        let total = rep.length;
+        for (let i = 0; i < total; i++) {
+            if (rep[i].isChecked) {
+                terminer++;
+            }
+        }
+        avancement = Math.round(terminer * 100 / total);
+        res.send({ total, terminer, avancement });
+    }).catch(er => {
+        console.log('JKKJKJKJKJk', er);
+        res.send(er);
+    })
+
 };
 
