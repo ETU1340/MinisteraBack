@@ -44,8 +44,8 @@ exports.AjoutProjet=(req, res)=> {
     titre: req.body.titre,
     debut: req.body.datedebut,
     fin: req.body.datefin,
-    regionId: req.body.id_region,
-    departementId: req.body.id_departement,
+    RegionId: req.body.id_region,
+    DepartementId: req.body.id_departement,
     latitude:req.body.latitude,
     longitude:req.body.longitude
 }).then(res.send({ message: "Projet was registered successfully!" }))
@@ -59,7 +59,7 @@ exports.AjoutProjet=(req, res)=> {
 
 exports.ProjetByRegion=(req, res)=> {
   console.log("================================");
-  ProjetModel.findAll({ where: { regionId: req.params.region }}).then(data => {
+  ProjetModel.findAll({ where: { RegionId: req.params.region }}).then(data => {
       res.send(data);
     })
     .catch(err => {
@@ -72,7 +72,7 @@ exports.ProjetByRegion=(req, res)=> {
 
   exports.ProjetByDepartement=(req, res)=> {
     console.log("================================");
-    ProjetModel.findAll({ where: {departementId: req.params.dept }}).then(data => {
+    ProjetModel.findAll({ where: {DepartementId: req.params.dept }}).then(data => {
         res.send(data);
       })
       .catch(err => {
