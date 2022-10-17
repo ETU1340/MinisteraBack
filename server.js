@@ -34,9 +34,12 @@ require('./app/routes/departement.routes')(app);
 // require('./app/routes/status.routes')(app);
 const db = require("./app/models");
 
+// db.sequelize.sync({ force: true });
+
+
 
 const PORT = 8080;
 // const PORT = 3001;
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}.`);
+    console.log(`⚡Server is running on port ${PORT}.`);
 });

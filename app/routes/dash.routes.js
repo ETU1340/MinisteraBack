@@ -11,6 +11,8 @@ module.exports = function (app) {
     });
 
     app.get("/api/dash/probleme", controlerDash.getStatProblem);
+    app.get("/api/dash/retardavance", controlerDash.getStatTacheRetard);
+    app.get("/api/dash/effectif", controlerDash.getEffectifByStatus);
 
     // app.post("/api/auth/signin", controlerAuth.signin);
 }
