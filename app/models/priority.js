@@ -11,19 +11,19 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasOne(models.Tache); 
+      this.hasOne(models.Tache);
     }
   }
   Priorite.init({
-    id: { type: DataTypes.INTEGER, primaryKey: true },
-    labele: {type:DataTypes.STRING,allowNull:false},
-    config: {type:DataTypes.DECIMAL,allowNull:false}
+    // id: { type: DataTypes.INTEGER, primaryKey: true },
+    labele: { type: DataTypes.STRING, allowNull: false },
+    config: { type: DataTypes.DECIMAL, allowNull: false }
   }, {
     createdAt: false,
     updatedAt: false,
     sequelize,
     modelName: 'Priorite',
-    freezeTableName:true
+    freezeTableName: true
   });
   return Priorite;
 };

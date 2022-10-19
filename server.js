@@ -34,8 +34,46 @@ require('./app/routes/departement.routes')(app);
 // require('./app/routes/status.routes')(app);
 const db = require("./app/models");
 
-// db.sequelize.sync({ force: true });
+// db.sequelize.sync({ force: true }).then(() => {
+//     console.log('Synchronysation des models et insertion des donnee minimal ');
+//     db.Probleme.create({
+//         labele: "Financiere"
+//     });
+//     db.Probleme.create({
+//         labele: "Paperrasse"
+//     });
+//     db.Probleme.create({
+//         labele: "Materiele"
+//     });
 
+//     db.Probleme.create({
+//         labele: "Autre"
+//     });
+//     //////////////////////////////
+//     db.Priorite.create({
+//         labele: "Bas",
+//         config: 1
+//     });
+//     db.Priorite.create({
+//         labele: "Moyenn",
+//         config: 2
+//     });
+//     db.Priorite.create({
+//         labele: "Urgent",
+//         config: 3
+//     });
+
+//     //////////////////////////////
+//     db.Statut.create({
+//         labele: "todo"
+//     });
+//     db.Statut.create({
+//         labele: "inProgress"
+//     });
+//     db.Statut.create({
+//         labele: "doing"
+//     });
+// })
 
 
 const PORT = 8080;

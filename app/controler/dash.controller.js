@@ -4,6 +4,37 @@ const ProblemeTache = db.ProblemeTache;
 const Probleme = db.Probleme;
 const { QueryTypes } = require('sequelize');
 
+
+exports.tracageRetard = async (req, res) => {
+    await db.sequelize.query(`
+        SELECT * FROM public."Tache" where "StatutId"!=3 and "fin"<now();`, {
+        type: QueryTypes.SELECT
+    })
+        .then(retard => {
+            res.send(retard);
+        })
+        .catch(err => {
+            res.send(err);
+        });
+};
+
+
+
+exports.tracageAvance = async (req, res) => {
+    db.sequelize.query(`
+        SELECT * FROM public."Tache" where "StatutId"=3 and "fin">now();`, {
+        type: QueryTypes.SELECT
+    })
+        .then(avance => {
+            res.send(avance);
+        })
+        .catch(err => {
+            res.send(err);
+        });
+}
+
+
+
 exports.getEffectifByStatus = async (req, res) => {
     await db.sequelize.query(`
         SELECT count(id) as effectif,"StatutId"
@@ -15,16 +46,11 @@ exports.getEffectifByStatus = async (req, res) => {
             let progress = 0;
             let doing = 0;
             let total = 0;
-            // console.log('HUHUUHUHUHUHUHUU', rep);
-
             rep.map(val => {
                 if (val.StatutId === 1) todo = parseInt(val.effectif);
                 if (val.StatutId === 2) progress = parseInt(val.effectif);
                 if (val.StatutId === 3) doing = parseInt(val.effectif);
             })
-
-
-            // console.log('huhuhuhahahahahuahuahuahauha', typeof (todo));
             total = parseInt(todo + progress + doing);
             res.send({ todo, progress, doing, total });
         })
@@ -93,3 +119,5 @@ exports.getStatProblem = async (req, res) => {
     //         console.log(err);
     //     })
 };
+
+

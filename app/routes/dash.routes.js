@@ -13,6 +13,9 @@ module.exports = function (app) {
     app.get("/api/dash/probleme", controlerDash.getStatProblem);
     app.get("/api/dash/retardavance", controlerDash.getStatTacheRetard);
     app.get("/api/dash/effectif", controlerDash.getEffectifByStatus);
+    ///////////////////////
+    app.get("/api/dash/tracageAvance", controlerDash.tracageAvance);
+    app.get("/api/dash/tracageRetard", controlerDash.tracageRetard);
 
     // app.post("/api/auth/signin", controlerAuth.signin);
 }

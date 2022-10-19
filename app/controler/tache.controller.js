@@ -30,12 +30,14 @@ exports.AjoutTache = (req, res) => {
   TacheModel.create({
     ProjetId: req.body.ProjetId,
     PrioriteId: req.body.PrioriteId,
+    StatutId: 1,
+
     titre: req.body.titre,
     description: req.body.description,
     output: req.body.output,
+
     debut: req.body.debut,
     fin: req.body.fin,
-    StatutId: 1,
     estAlerteur: req.body.estAlerteur
   }).then(rep => res.send(rep))
     .catch(err => {
