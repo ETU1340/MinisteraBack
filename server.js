@@ -20,6 +20,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 require('./app/routes/dash.routes')(app);
 require('./app/routes/problemeTache.routes')(app);
 
+require('./app/routes/role.routes')(app);
+require('./app/routes/departement.routes')(app);
 require('./app/routes/sousTache.routes')(app);
 require('./app/routes/commentaire.routes')(app);
 require('./app/routes/tacheAlerte.routes')(app);
@@ -29,13 +31,13 @@ require('./app/routes/user.routes')(app);
 require('./app/routes/projet.routes')(app);
 require('./app/routes/taches.routes')(app);
 require('./app/routes/historique.routes')(app);
-require('./app/routes/departement.routes')(app);
 // require('./app/routes/priority.routes')(app);
 // require('./app/routes/status.routes')(app);
 const db = require("./app/models");
 
 // db.sequelize.sync({ force: true }).then(() => {
 //     console.log('Synchronysation des models et insertion des donnee minimal ');
+
 //     db.Probleme.create({
 //         labele: "Financiere"
 //     });
@@ -49,13 +51,13 @@ const db = require("./app/models");
 //     db.Probleme.create({
 //         labele: "Autre"
 //     });
-//     //////////////////////////////
+//     /////////////Priority/////////////////
 //     db.Priorite.create({
 //         labele: "Bas",
 //         config: 1
 //     });
 //     db.Priorite.create({
-//         labele: "Moyenn",
+//         labele: "   Moyenn",
 //         config: 2
 //     });
 //     db.Priorite.create({
@@ -63,7 +65,7 @@ const db = require("./app/models");
 //         config: 3
 //     });
 
-//     //////////////////////////////
+//     /////////////Statut/////////////////
 //     db.Statut.create({
 //         labele: "todo"
 //     });
@@ -72,6 +74,27 @@ const db = require("./app/models");
 //     });
 //     db.Statut.create({
 //         labele: "doing"
+//     });
+
+//     /////////Role
+//     db.Role.create({
+//         name: "Admin"
+//     });
+//     db.Role.create({
+//         name: "Moderator"
+//     });
+//     db.Role.create({
+//         name: "User"
+//     });
+//     //////////Departement//////////
+//     db.Departement.create({
+//         intitule: "RH"
+//     });
+//     db.Departement.create({
+//         intitule: "DSI"
+//     });
+//     db.Departement.create({
+//         intitule: "Juridique"
 //     });
 // })
 

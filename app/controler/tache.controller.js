@@ -1,7 +1,28 @@
 const models = require("../models");
 const TacheModel = models.Tache;
 const Commentaire = models.Commentaire;
-const SousTache = models.SousTache;
+// const SousTache = models.SousTache;
+
+exports.activePrevisionalLate = (req, res) => {
+  console.log('huu', req.body.tacheRetard);
+  let ids = [];
+  req.body.tacheRetard.map(val => {
+    ids.push(val.id);
+  })
+  console.log('huu', new Date());
+
+  TacheModel.update(
+    {
+      StatutId: 2, ///in progress
+      debut: new Date(),
+    },
+    { where: { id: ids } }
+  ).then(rep => {
+    res.status(200).send('activation reussis');
+  }).catch(err => {
+    res.send("Erreur lors de l'activation");
+  })
+};
 
 exports.getAllTache = (req, res) => {
   // return un instance de tache

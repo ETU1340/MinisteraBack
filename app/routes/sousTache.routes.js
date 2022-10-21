@@ -13,4 +13,8 @@ module.exports = function (app) {
     app.put("/api/sousTache/update", controlerSousTache.updateSousTache);
     //delete
     app.put("/api/sousTache/update", controlerSousTache.updateSousTache);
+    //update massive de tout les checklist
+    app.put("/api/sousTache/endAllChecklist/:TacheId", controlerSousTache.endAllChecklist);
+
+
 }

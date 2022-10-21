@@ -63,12 +63,34 @@ exports.getAvancement = (req, res) => {
                 terminer++;
             }
         }
+        // avancement = null ? Math.round(terminer * 100 / total) : 0;
         avancement = Math.round(terminer * 100 / total);
         res.send({ total, terminer, avancement });
     }).catch(er => {
         console.log('JKKJKJKJKJk', er);
         res.send(er);
     })
+};
 
+exports.endAllChecklist = (req, res) => {
+    SousTacheModel.update(
+        { isChecked: true },
+        { where: { TacheId: req.params.TacheId } }
+    ).then(rep => {
+        // let terminer = 0;
+        // let avancement = 0;
+        // let total = rep.length;
+        // for (let i = 0; i < total; i++) {
+        //     if (rep[i].isChecked) {
+        //         terminer++;
+        //     }
+        // }
+
+        // avancement = null ? Math.round(terminer * 100 / total) : 0;
+        res.send(rep);
+    }).catch(er => {
+        console.log('JKKJKJKJKJk', er);
+        res.send(er);
+    })
 };
 
