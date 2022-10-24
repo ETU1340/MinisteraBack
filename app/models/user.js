@@ -10,32 +10,33 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-    //   models.Role.belongsToMany(this, {
-    //     through: "user_roles",
-    //     foreignKey: "roleId",
-    //     otherKey: "userId"
-    // });
-    
-    // models.User.belongsToMany(this, {
-    //     through: "user_roles",
-    //     foreignKey: "userId",
-    //     otherKey: "roleId"
-    // });
+      //   models.Role.belongsToMany(this, {
+      //     through: "user_roles",
+      //     foreignKey: "roleId",
+      //     otherKey: "userId"
+      // });
+
+      // models.User.belongsToMany(this, {
+      //     through: "user_roles",
+      //     foreignKey: "userId",
+      //     otherKey: "roleId"
+      // });
     }
   }
   User.init({
-      // id: { type: DataTypes.INTEGER, primaryKey: true },
-      email: {
-       type: DataTypes.STRING,
-       validate: {
+    email: {
+      type: DataTypes.STRING,
+      validate: {
         isEmail: true,
       },
       unique: true,
-      allowNull:false
+      allowNull: false
     },
-      username:{type:DataTypes.STRING,allowNull:false},
-      password:{type:DataTypes.STRING,allowNull:false}
-  },{
+    username: { type: DataTypes.STRING, allowNull: false },
+    password: { type: DataTypes.STRING, allowNull: false },
+    isActive: { type: DataTypes.BOOLEAN, allowNull: false },
+    initiation: { type: DataTypes.BOOLEAN, defaultValue: false }
+  }, {
     sequelize,
     modelName: 'User',
   });

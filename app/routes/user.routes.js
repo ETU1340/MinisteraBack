@@ -11,28 +11,28 @@ module.exports = function (app) {
         next();
     });
 
-    app.get("/api/test/all", controlerUser.adminBoard);
+    // app.get("/api/test/all", controlerUser.adminBoard);
 
 
-    app.get(
-        "/api/test/user",
-        [authJwt.verifyToken],
-        controlerUser.userBoard
-    );
+    // app.get(
+    //     "/api/test/user",
+    //     [authJwt.verifyToken],
+    //     controlerUser.userBoard
+    // );
 
 
-    app.get(
-        "/api/test/mod",
-        [authJwt.verifyToken, authJwt.isModerator],
-        controlerUser.moderatorBoard
-    );
+    // app.get(
+    //     "/api/test/mod",
+    //     [authJwt.verifyToken, authJwt.isModerator],
+    //     controlerUser.moderatorBoard
+    // );
 
 
-    app.get(
-        "/api/test/admin",
-        [authJwt.verifyToken, authJwt.isAdmin],
-        controlerUser.adminBoard
-    );
+    // app.get(
+    //     "/api/test/admin",
+    //     [authJwt.verifyToken, authJwt.isAdmin],
+    //     controlerUser.adminBoard
+    // );
 
 
 };

@@ -38,6 +38,15 @@ const db = require("./app/models");
 // db.sequelize.sync({ force: true }).then(() => {
 //     console.log('Synchronysation des models et insertion des donnee minimal ');
 
+//     var bcrypt = require("bcryptjs");
+//     db.User.create({
+//         username: "admin",
+//         password: bcrypt.hashSync('123456789!!??', 8),
+//         email: 'admin@gmail.com',
+//         isActive: true
+//     });
+
+//     /////////////////////
 //     db.Probleme.create({
 //         labele: "Financiere"
 //     });

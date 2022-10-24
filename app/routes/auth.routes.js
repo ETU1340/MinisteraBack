@@ -20,4 +20,13 @@ module.exports = function (app) {
     );
 
     app.post("/api/auth/signin", controlerAuth.signin);
+
+
+    app.get("/api/auth/allUser", controlerAuth.getAllUser);
+
+    ///activation user mailsender
+    app.post("/api/auth/activation", controlerAuth.activation);
+    //update user
+    app.post("/api/auth/updateUser", controlerAuth.updateUser);
+
 }
