@@ -29,6 +29,7 @@ require('./app/routes/taches.routes')(app);
 require('./app/routes/historique.routes')(app);
 require('./app/routes/departement.routes')(app);
 require('./app/routes/priorite.routes')(app);
+require('./app/routes/action.routes')(app);
 // require('./app/routes/priority.routes')(app);
 // require('./app/routes/status.routes')(app);
 const db = require("./app/models");
@@ -89,6 +90,52 @@ const db = require("./app/models");
 //     db.Priorite.create(
 //         { labele: 'Hight', config: '3' }
 //     );
+//        db.Role.create(
+//         { name: 'Admin' }
+//        );
+
+//        db.Role.create(
+//         { name: 'Moderateur' }
+//        );
+
+//        db.Role.create(
+//         { name: 'Utilisateur' }
+//        );
+
+//        db.Action.create(
+//          { label: 'Modifier', value: false,RoleId:1 }
+//       );
+//        db.Action.create(
+//         { label: 'Supprimer', value: false,RoleId:1 }
+//       );
+//       db.Action.create(
+//         { label: 'Ajouter', value: false,RoleId:1 }
+//       );
+
+//       db.Action.create(
+//         { label: 'Modifier', value: false,RoleId:2 }
+//       );
+//       db.Action.create(
+//        { label: 'Supprimer', value: false,RoleId:2 }
+//       );
+//       db.Action.create(
+//        { label: 'Ajouter', value: false,RoleId:2 }
+//       );
+
+
+//       db.Action.create(
+//         { label: 'Modifier', value: false,RoleId:3 }
+//       );
+//       db.Action.create(
+//        { label: 'Supprimer', value: false,RoleId:3 }
+//       );
+//       db.Action.create(
+//        { label: 'Ajouter', value: false,RoleId:3 }
+//       );
+//       db.User.create(
+//         { email: 'Admin@gmail.com',username:'admin',password:'5555aaza',RoleId:'1',photo:'szdzdz' }
+//        );
+   
 //     db.Projet.create({
       
 //         titre: "PIPELINE",

@@ -41,12 +41,19 @@ declare
 	configshours varchar(50);
 	dateAlerte  timestamp;
 	id_tache  INTEGER;
+    countTacheAlerte INTEGER;
     BEGIN
         IF NEW."estAlerteur" is true THEN
 			id_tache=NEW.id;
 			configs=(select config from "Priorite" where id=NEW."PrioriteId");
             dateAlerte=(select NEW.debut - (configs || '')::INTEGER);
-            INSERT INTO "TacheAlerte" ("TacheId","dateAlerte") values (id_tache,dateAlerte) ;
+            countTacheAlerte=(select count(id) from "TacheAlerte" where "TacheId"=id_tache);
+            IF countTacheAlerte>0 THEN
+                Update "TacheAlerte" SET "dateAlerte"= dateAlerte where "TacheId"=id_tache;
+            ELSE
+                INSERT INTO "TacheAlerte" ("TacheId","dateAlerte") values (id_tache,dateAlerte) ;
+
+            END IF;     
 			RETURN NEW;
 		ELSE 	
 			RETURN NULL;
