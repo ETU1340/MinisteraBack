@@ -34,9 +34,9 @@ module.exports = (sequelize, DataTypes) => {
       //  type: DataTypes.UUID,
       //  defaultValue: DataTypes.UUIDV4
     },
-    debut: { type: DataTypes.DATE, allowNull: false },
-    fin: { type: DataTypes.DATE, allowNull: false },
-    // titre: DataTypes.STRING,
+    debut: { type: DataTypes.DATEONLY, allowNull: false },
+    fin: { type: DataTypes.DATEONLY, allowNull: false },
+    titre: DataTypes.STRING,
     description: { type: DataTypes.STRING, allowNull: false },
     output: { type: DataTypes.STRING, allowNull: false },
     estAlerteur: { type: DataTypes.BOOLEAN, allowNull: false }

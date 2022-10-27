@@ -24,26 +24,26 @@ exports.saveSousTache = (req, res) => {
         res.status(200).send(rep);
     }).catch(er => {
         console.log(er);
-        res.send(er);
     })
 };
 exports.updateSousTache = (req, res) => {
+    console.log(req.body);
     SousTacheModel.update(
-        { isChecked: req.body.isChecked },
+        { isChecked: req.body.isChecked,labele: req.body.labele },
         { where: { id: req.body.id } }
     ).then(rep => {
         res.status(200).send(rep);
     }).catch(er => {
-        res.send(er);
+       console.log(er);
     })
 };
 exports.delete = (req, res) => {
     SousTacheModel.destroy(
-        { where: { id: req.body.id } }
+        { where: { id: req.params.idTache } }
     ).then(rep => {
-        res.status(200).send(rep);
+        res.send({rep});
     }).catch(er => {
-        res.send(er);
+        console.log(er);
     })
 };
 

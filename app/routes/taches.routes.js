@@ -1,4 +1,5 @@
 const controlerTache = require("../controler/tache.controller");
+
 module.exports = function (app) {
     app.use(function (req, res, next) {
         res.setHeader(
@@ -15,8 +16,11 @@ module.exports = function (app) {
     //get by  idprojet
     app.get("/api/tache/ByIdProjet/:id_projet", controlerTache.TacheByProjet);
 
+    //get date debut et fin
+    app.get("/api/tache/TacheDate/:id_projet", controlerTache.TacheDate);
+
     //update statut mobile?
-    app.put("/api/tache/updateStatut/:tache", controlerTache.UpdateTache);
+    app.put("/api/tache/update", controlerTache.UpdateTache);
     // app.get("/api/Tache/Taches",controlerTache.getAllTache);
 
 
@@ -24,7 +28,14 @@ module.exports = function (app) {
     app.put("/api/tache/update", controlerTache.UpdateTacheWeb);
     // app.get("/api/Tache/Taches",controlerTache.getAllTache);
 
+    //update to progress
+    app.put("/api/tache/updateToProgress/:tache", controlerTache.UpdateToProgress);
+
     //delete
-    app.post("/api/tache/delete", controlerTache.DeleteTache);
+    app.delete("/api/tache/delete", controlerTache.DeleteTache);
+
+
+    //delete mobile
+    app.delete("/api/tache/delete/:tache", controlerTache.DeleteTacheMobile);
 
 }

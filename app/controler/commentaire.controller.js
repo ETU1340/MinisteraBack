@@ -17,6 +17,7 @@ exports.getAllComsByTache = (req, res) => {
 };
 
 exports.saveComs = (req, res) => {
+    console.log(req.body);
     Commentaire.create({
         intitule: req.body.intitule,
         TacheId: req.body.TacheId,
