@@ -281,7 +281,7 @@ const db = require("./app/models");
 // db.sequelize.sync({ force: true }).then(() => {
 //     console.log('synchronysation des models');
 // })
-
+console.log('yes');
 
 const { QueryTypes } = require('sequelize');
 // const sequelize = require("sequelize");
