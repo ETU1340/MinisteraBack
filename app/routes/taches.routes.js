@@ -7,6 +7,8 @@ module.exports = function (app) {
         );
         next();
     });
+    //retard Tache to in progress
+    app.put("/api/tache/updateRetard", controlerTache.activePrevisionalLate);
     //post Tache
     app.post("/api/tache/add", controlerTache.AjoutTache);
     //GET ALL

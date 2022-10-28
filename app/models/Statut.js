@@ -12,22 +12,22 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) { 
+    static associate(models) {
       // define association here
-      this.hasOne(models.Tache);    
+      this.hasOne(models.Tache);
 
       // this.belongsTo(models.Taches);
     }
 
   }
- Statut.init({
-    id: { 
-      type: DataTypes.INTEGER,
-          primaryKey: true ,
-          autoIncrement:true,
-          allowNull: false
-      },
-    labele:{type:DataTypes.STRING,allowNull:false}
+  Statut.init({
+    // id: { 
+    //   type: DataTypes.INTEGER,
+    //       primaryKey: true ,
+    //       autoIncrement:true,
+    //       allowNull: false
+    //   },
+    labele: { type: DataTypes.STRING, allowNull: false }
   }, {
     createdAt: false,
     updatedAt: false,
@@ -35,6 +35,6 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Statut',
     freezeTableName: true,
   });
-  
+
   return Statut;
 };
