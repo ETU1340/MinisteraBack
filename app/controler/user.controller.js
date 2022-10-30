@@ -1,22 +1,18 @@
-const models = require("../models");
-const UserModel = models.User;
+// ato za no mireceive data,
+//     ato no mfind,
+//         ato no mandefa json
 
+exports.allAccess = (req, res) => {
+    res.status(200).send("Public Content.");
+    let email = res.body.email;
+};
 
-exports.UpdateUser = (req, res) => {
-  // console.log(req.params);
-  // console.log('ilay nandrasan', req.body.PrioriteId);
-  UserModel.update(
-    {
-      username: req.body.username,
-      photo:req.body.photo,
-      RoleId:req.body.roleId,
-    },
-    { where: { id: req.body.idUser} }
-  )
-    .then(rep => res.send(rep))
-    .catch(err => {
-      // console.log('------------', err)
-      console.log(err)
-      // res.status(500).send({ message: err.message });
-    });
+exports.userBoard = (req, res) => {
+    res.status(200).send("Mety mory e!!!!!!!!!User Content.");
+};
+exports.adminBoard = (req, res) => {
+    res.status(200).send("Admin Content.");
+};
+exports.moderatorBoard = (req, res) => {
+    res.status(200).send("Moderator Content.");
 };

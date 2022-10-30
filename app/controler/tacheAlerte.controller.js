@@ -1,17 +1,19 @@
 const models = require("../models");
-const { QueryTypes } = require('sequelize');
+
+const TacheAlerteModel = models.TacheAlerte;
 
 exports.getAlertBydepartement = (req, res) => {
- 
-  models.sequelize.query(
-    'select * from dateAlerte where iddept=:dept',
-    {
-      replacements:{dept: req.params.departement },
-      type: QueryTypes.SELECT
-    }).then(data => {
-  res.send(data);
-  })
-  .catch(err => {
- console.log(err);
+  TacheAlerteModel.findAll(
+    { where: { dateAlerte: new Date() } }
+  )
+    .then(data => {
+      res.send(data);
+      console.log(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving Alert."
+      });
     });
 };

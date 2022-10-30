@@ -29,7 +29,7 @@ exports.saveSousTache = (req, res) => {
 };
 exports.updateSousTache = (req, res) => {
     SousTacheModel.update(
-        { isChecked: req.body.isChecked  },
+        { isChecked: req.body.isChecked },
         { where: { id: req.body.id } }
     ).then(rep => {
         res.status(200).send(rep);
@@ -37,19 +37,6 @@ exports.updateSousTache = (req, res) => {
         res.send(er);
     })
 };
-
-exports.updateSousTacheMobile = (req, res) => {
-    console.log(req.body);
-    SousTacheModel.update(
-        { isChecked: req.body.isChecked,labele: req.body.labele },
-        { where: { id: req.body.id } }
-    ).then(rep => {
-        res.status(200).send(rep);
-    }).catch(er => {
-       console.log(er);
-    })
-};
-
 exports.delete = (req, res) => {
     SousTacheModel.destroy(
         { where: { id: req.body.id } }
@@ -59,17 +46,6 @@ exports.delete = (req, res) => {
         res.send(er);
     })
 };
-
-exports.deleteMobile = (req, res) => {
-    SousTacheModel.destroy(
-        { where: { id: req.params.idTache } }
-    ).then(rep => {
-        res.send({rep});
-    }).catch(er => {
-        console.log(er);
-    })
-};
-
 
 
 ///getavancement tokny atao any am base

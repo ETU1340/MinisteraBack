@@ -12,5 +12,5 @@ module.exports = function (app) {
     //update
     app.put("/api/sousTache/update", controlerSousTache.updateSousTache);
     //delete
-    app.put("/api/sousTache/updateMobile", controlerSousTache.updateSousTacheMobile);
+    app.put("/api/sousTache/update", controlerSousTache.updateSousTache);
 }

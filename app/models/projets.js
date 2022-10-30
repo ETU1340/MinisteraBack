@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
   }
 
   Projet.init({
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     debut: { type: DataTypes.DATE, allowNull: false },
     fin: { type: DataTypes.DATE, allowNull: false },
     titre: {

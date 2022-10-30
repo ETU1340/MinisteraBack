@@ -10,7 +10,17 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-    this.belongsTo(models.Role);
+    //   models.Role.belongsToMany(this, {
+    //     through: "user_roles",
+    //     foreignKey: "roleId",
+    //     otherKey: "userId"
+    // });
+    
+    // models.User.belongsToMany(this, {
+    //     through: "user_roles",
+    //     foreignKey: "userId",
+    //     otherKey: "roleId"
+    // });
     }
   }
   User.init({
@@ -24,14 +34,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull:false
     },
       username:{type:DataTypes.STRING,allowNull:false},
-      password:{type:DataTypes.STRING,allowNull:false},
-      photo:{type:DataTypes.STRING,allowNull:false}
+      password:{type:DataTypes.STRING,allowNull:false}
   },{
     sequelize,
     modelName: 'User',
-    createdAt: false,
-    updatedAt: false,
-    freezeTableName: true,
   });
   return User;
 };

@@ -15,17 +15,10 @@ module.exports = function (app) {
     //get by  idprojet
     app.get("/api/tache/ByIdProjet/:id_projet", controlerTache.TacheByProjet);
 
-    
-    //get by  idprojet mobile
-    app.get("/api/tache/ByIdProjet/:id_projet", controlerTache.TacheByProjetMobile);
-
-   
-    //get date debut et fin
-    app.get("/api/tache/TacheDate/:id_projet", controlerTache.TacheDate);
-
     //update statut mobile?
-    app.put("/api/tache/update", controlerTache.UpdateTache);
+    app.put("/api/tache/updateStatut/:tache", controlerTache.UpdateTache);
     // app.get("/api/Tache/Taches",controlerTache.getAllTache);
+
 
     //update  web
     app.put("/api/tache/update", controlerTache.UpdateTacheWeb);
@@ -34,9 +27,4 @@ module.exports = function (app) {
     //delete
     app.post("/api/tache/delete", controlerTache.DeleteTache);
 
-     //delete
-     app.post("/api/tache/deleteMobile", controlerTache.DeleteTacheMobile);
-
-    //update to progress
-    app.put("/api/tache/updateToProgress/:tache", controlerTache.UpdateToProgress)
 }

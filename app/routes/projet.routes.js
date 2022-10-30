@@ -16,12 +16,5 @@ module.exports = function (app) {
     app.get("/api/projet/ProjetByRegion/:region",controlerProjet.ProjetByRegion);
     //by departement
     app.get("/api/projet/ProjetByDept/:dept",controlerProjet.ProjetByDepartement);
-     //by departement
-    app.get("/api/projet/ProjetByDeptMobile/:dept",controlerProjet.ProjetByDepartementMobile);
 
 }
-     
-//get stat projets
-app.get("/api/projet/statProjets/:dept",controlerProjet.StatProjets)
-    //update projet
-    app.put("/api/projet/update",controlerProjet.UpdateProjetDate);

@@ -26,13 +26,25 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.hasOne(models.Action);
-
-      this.hasOne(models.User);
-
+        // this.belongsToMany(models.User, {
+        //     through: "user_roles",
+        //     foreignKey: "roleId",
+        //     otherKey: "userId"
+        // });
+    
+    // models.User.belongsToMany(this, {
+    //     through: "user_roles",
+    //     foreignKey: "userId",
+    //     otherKey: "roleId"
+    // });
     }
   }
   Role.init({
+      // id: { type: DataTypes.INTEGER, primaryKey: true },
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true
+    },
     name: {
      type:DataTypes.STRING,allowNull:false
     }
@@ -40,9 +52,6 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Role',
-    createdAt: false,
-    updatedAt: false,
-    freezeTableName: true,
   });
   return Role;
 };
