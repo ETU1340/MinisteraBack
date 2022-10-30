@@ -21,13 +21,7 @@ module.exports = (sequelize, DataTypes) => {
 
   }
  Statut.init({
-    id: { 
-      type: DataTypes.INTEGER,
-          primaryKey: true ,
-          autoIncrement:true,
-          allowNull: false
-      },
-    labele:{type:DataTypes.STRING,allowNull:false}
+  labele:{type:DataTypes.STRING,allowNull:false}
   }, {
     createdAt: false,
     updatedAt: false,

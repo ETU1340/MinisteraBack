@@ -1,17 +1,15 @@
 const models = require("../models");
-const UserModel = models.User;
+const ActionModel = models.Action;
 
 
-exports.UpdateUser = (req, res) => {
+exports.UpdateAction = (req, res) => {
   // console.log(req.params);
   // console.log('ilay nandrasan', req.body.PrioriteId);
-  UserModel.update(
+  ActionModel.update(
     {
-      username: req.body.username,
-      photo:req.body.photo,
-      RoleId:req.body.roleId,
+      value: req.body.value,
     },
-    { where: { id: req.body.idUser} }
+    { where: { RoleId: req.body.idRole,label:req.body.labele } }
   )
     .then(rep => res.send(rep))
     .catch(err => {

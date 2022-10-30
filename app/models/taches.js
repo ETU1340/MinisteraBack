@@ -27,16 +27,9 @@ module.exports = (sequelize, DataTypes) => {
 
   }
   Taches.init({
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
-      //  type: DataTypes.UUID,
-      //  defaultValue: DataTypes.UUIDV4
-    },
     debut: { type: DataTypes.DATE, allowNull: false },
     fin: { type: DataTypes.DATE, allowNull: false },
-    // titre: DataTypes.STRING,
+    titre: DataTypes.STRING,
     description: { type: DataTypes.STRING, allowNull: false },
     output: { type: DataTypes.STRING, allowNull: false },
     estAlerteur: { type: DataTypes.BOOLEAN, allowNull: false }
