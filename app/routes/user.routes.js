@@ -11,6 +11,7 @@ module.exports = function (app) {
         next();
     });
 
+    app.put("/api/user/Update",controlerUser.UpdateUser);
     // app.get("/api/test/all", controlerUser.adminBoard);
 
 

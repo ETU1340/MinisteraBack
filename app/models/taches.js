@@ -28,8 +28,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   Taches.init({
     titre: { type: DataTypes.STRING, allowNull: false },
-    debut: { type: DataTypes.DATE, allowNull: false },
-    fin: { type: DataTypes.DATE, allowNull: false },
+    debut: { type: DataTypes.DATEONLY, allowNull: false },
+    fin: { type:DataTypes.DATEONLY, allowNull: false },
     // titre: DataTypes.STRING,
     description: { type: DataTypes.STRING, allowNull: false },
     output: { type: DataTypes.STRING, allowNull: false },
