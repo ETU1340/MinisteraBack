@@ -11,10 +11,11 @@ module.exports = function (app) {
     app.post("/api/sousTache/save", controlerSousTache.saveSousTache);
     //update
     app.put("/api/sousTache/update", controlerSousTache.updateSousTache);
-    //delete
-    app.put("/api/sousTache/update", controlerSousTache.updateSousTache);
+    //update mobile
+    app.put("/api/sousTache/updateMobile", controlerSousTache.updateSousTacheMobile);
     //update massive de tout les checklist
     app.put("/api/sousTache/endAllChecklist/:TacheId", controlerSousTache.endAllChecklist);
-
-
+ 
+ //delete
+ app.delete("/api/sousTache/deleteMobile/:idTache", controlerSousTache.delete);
 }

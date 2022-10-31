@@ -9,8 +9,8 @@ module.exports = {
   },
   "test": {
     "username": "postgres",
-    "password": "root",
-    "database": "Tsisy",
+    "password": "mdpprom13",
+    "database": "ministera",
     "host": "localhost",
     "dialect": "postgres"
   },
