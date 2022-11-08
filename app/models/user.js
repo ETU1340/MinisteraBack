@@ -35,7 +35,9 @@ module.exports = (sequelize, DataTypes) => {
     username: { type: DataTypes.STRING, allowNull: false },
     password: { type: DataTypes.STRING, allowNull: false },
     isActive: { type: DataTypes.BOOLEAN, allowNull: false },
-    initiation: { type: DataTypes.BOOLEAN, defaultValue: false }
+    initiation: { type: DataTypes.BOOLEAN, defaultValue: false },
+    contact: { type: DataTypes.STRING }
+
   }, {
     sequelize,
     modelName: 'User',

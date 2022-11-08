@@ -14,15 +14,17 @@ module.exports = (sequelize, DataTypes) => {
       this.hasOne(models.Projet);
     }
   }
+
   Departement.init({
-    intitule: {type:DataTypes.STRING,allowNull:false}
+    intitule: { type: DataTypes.STRING, allowNull: false }
 
   }, {
     createdAt: false,
     updatedAt: false,
     sequelize,
     modelName: 'Departement',
-    freezeTableName:true
+    freezeTableName: true
   });
   return Departement;
+
 };

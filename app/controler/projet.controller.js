@@ -10,7 +10,19 @@
 //misy erreur ilay res.send message, milla jerena ilay izy
 const models = require("../models");
 const ProjetModel = models.Projet;
+const TacheModel = models.Tache;
 
+exports.avancement = (req, res) => {
+  TacheModel.findAll().then(data => {
+    // res.send(data);
+  })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving tutorials."
+      });
+    });
+};
 exports.getAllProjet = (req, res) => {
   ProjetModel.findAll().then(data => {
     res.send(data);
@@ -18,7 +30,7 @@ exports.getAllProjet = (req, res) => {
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving tutorials."
+          err.message || "Some error occurred while retrieving Poject."
       });
     });
 };
@@ -32,7 +44,7 @@ exports.getProjetByDept = (req, res) => {
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving tutorials."
+          err.message || "Some error occurred while retrieving Poject."
       });
     });
 };
@@ -78,9 +90,10 @@ exports.ProjetByRegion = (req, res) => {
 
 exports.ProjetByDepartement = (req, res) => {
   console.log("================================");
-  ProjetModel.findAll({ where: { DepartementId: req.params.dept } }).then(data => {
-    res.send(data);
-  })
+  ProjetModel.findAll({ where: { DepartementId: req.params.dept } })
+    .then(data => {
+      res.send(data);
+    })
     .catch(err => {
       res.status(500).send({
         message:
