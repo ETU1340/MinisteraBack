@@ -17,15 +17,25 @@ module.exports = function (app) {
     //get by  idprojet
     app.get("/api/tache/ByIdProjet/:id_projet", controlerTache.TacheByProjet);
 
+    app.get("/api/tache/ByUser/:id_projet/:idUser", controlerTache.TacheByProjetByUser);
+
+    
+    app.get("/api/tache/StateByProjet/:id_projet", controlerTache.StatTacheByProjet);
+
+     //get by  idprojet
+    //  app.get("/api/tache/TacheState/:id_projet", controlerTache.TacheState);
+
     //get by  idprojet
     app.get("/api/tache/ByIdProjetMobile/:id_projet", controlerTache.TacheByProjetMobile);
+
+    app.get("/api/tache/ByIdProjetByUser/:id_projet/:id_user", controlerTache.TacheByProjetByUser);
 
     //update statut mobile?
     app.put("/api/tache/updateMobile", controlerTache.UpdateTacheMobile);
     // app.get("/api/Tache/Taches",controlerTache.getAllTache);
 
     //update to progress
-    app.put("/api/tache/updateToProgress/:tache", controlerTache.UpdateToProgress);
+    // app.put("/api/tache/updateToProgress/:tache", controlerTache.UpdateToProgress);
 
 
     //update  web

@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     //       autoIncrement:true,
     //       allowNull: false
     //   },
-    labele: { type: DataTypes.STRING, allowNull: false }
+    labele: { type: DataTypes.STRING(20), allowNull: false }
   }, {
     createdAt: false,
     updatedAt: false,

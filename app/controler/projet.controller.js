@@ -107,9 +107,23 @@ exports.ProjetByDepartementMobile=(req, res)=> {
   };
 
 
+  exports.ProjetAllMobile=(req, res)=> {
+    console.log("================================");
+    models.sequelize.query(
+      'select * from ProjetByDept',
+      {
+        type: QueryTypes.SELECT
+      }).then(data => {
+        res.send(data);
+      })
+      .catch(err => {
+      console.log(err);
+        });
+    };
 
 
-  exports.StatProjets=(req, res)=> {
+
+  exports.StatProjetsByDept=(req, res)=> {
     console.log("================================");
     models.sequelize.query(
       'select (select count(id) from projetbydept where avancement=0 and "DepartementId"=:dept )as todo , (select count(id) from projetbydept where avancement=100  and "DepartementId"=:dept  )as finish ,(select count(id) from projetbydept where avancement>0 and avancement<100  and "DepartementId"=:dept  )as progress',
@@ -124,7 +138,34 @@ exports.ProjetByDepartementMobile=(req, res)=> {
         });
     };
 
+    exports.StatGlobal=(req, res)=> {
+      console.log("================================");
+      models.sequelize.query(
+        'select (select count(id) from projetbydept where avancement=0 )as todo , (select count(id) from projetbydept where avancement=100)as finish ,(select count(id) from projetbydept where avancement>0 and avancement<100 )as progress',
+        {
+          type: QueryTypes.SELECT
+        }).then(data => {
+          res.send(data);
+        })
+        .catch(err => {
+        console.log(err);
+          });
+      };
 
+    exports.StatProjetByUser=(req, res)=> {
+      console.log("================================");
+      models.sequelize.query(
+        'select sum(avancement)*100/(count(id)*100) as avancement,"UserId",username,count(id) as nbtache  from tachebyprojet where "ProjetId"=:projet group by "UserId",username',
+        {
+          replacements:{projet:req.params.idProjet},
+          type: QueryTypes.SELECT
+        }).then(data => {
+          res.send(data);
+        })
+        .catch(err => {
+        console.log(err);
+          });
+      };
     exports.UpdateProjetDate= (req, res) => {
        console.log(req.body);
       // console.log('ilay nandrasan', req.body.PrioriteId);

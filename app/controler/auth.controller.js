@@ -42,60 +42,69 @@ exports.updateUser = (req, res) => {
 
 exports.signup = (req, res) => {
     // Save User to Database
-    let generatePassword = generator.generate({ length: 20, numbers: true });
+    
+    let generatePassword = generator.generate({ length: 5, numbers: true });
+    console.log("mdp:"+generatePassword);
     UserModel.create({
         username: req.body.username,
         email: req.body.email,
+        photo:req.body.image,
         isActive: false,
         password: bcrypt.hashSync(generatePassword, 8)
+    }).then(function(item){
+         res.send({message:'Attendre activation de votre compte',error:false});
+        // res.send({message:'Attendre activation de votre compte'})
     })
-        .then(user => {
-            res.send('Attendre activation de votre compte');
-        })
-        .catch(err => {
-            res.status(500).send({ message: err.message });
+        .catch(function (err) {
+            res.send({message:'Format de l`email incorrecte',error:true});
         });
 
 };
 
 exports.signin = (req, res) => {
     console.log(req.body.username, req.body.password, req.body.email);
+    var authorities = [];
     UserModel.findOne({
         where: {
             username: req.body.username
         }
     })
         .then(user => {
+            console.log(user);
             if (!user) {
-                return res.status(404).send({ message: "User Not found." });
+                return res.send({ message: "Utlisateur introuvable" });
             }
+            console.log(req.body.password);
+            console.log(user.password);
             var passwordIsValid = bcrypt.compareSync(
                 req.body.password,
                 user.password
             );
+            console.log(passwordIsValid);
             if (!passwordIsValid) {
-                return res.status(401).send({
+                return res.send({
                     accessToken: null,
-                    message: "Invalid Password!"
+                    message: "Mot de passe eronné!"
                 });
             }
             var token = jwt.sign({ id: user.id }, config.secret, {
                 expiresIn: 86400 // 24 hours
             });
 
-            var authorities = [];
+           
             res.send({
                 id: user.id,
+                idDept:user.DepartementId,
                 username: user.username,
                 email: user.email,
-                roles: authorities,
+                roles: user.RoleId,
                 accessToken: token,
                 initiation: user.initiation
             });
 
         })
         .catch(err => {
-            res.status(500).send({ message: err.message });
+            res.send({ message: err.message });
         });
 };
 

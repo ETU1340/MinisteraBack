@@ -1,6 +1,6 @@
 const models = require("../models");
 const SousTacheModel = models.SousTache;
-
+const { QueryTypes } = require('sequelize');
 exports.getSousTacheByTache = (req, res) => {
     // console.log('----------------------_>>>>>', req.params.TacheId);
     SousTacheModel.findAll({ where: { TacheId: req.params.TacheId } })
@@ -115,3 +115,17 @@ exports.endAllChecklist = (req, res) => {
     })
 };
 
+exports.VerifieST = (req, res) => {
+    console.log(req.params)
+   models.sequelize.query(
+      'select count(id) as nbst from "public"."SousTache" where "isChecked"=false and  "TacheId"=:tacheId ',
+      {
+        replacements:{tacheId:req.params.TacheId},
+        type: QueryTypes.SELECT
+      }).then(data => {
+    res.send(data);
+    })
+    .catch(err => {
+   console.log(err);
+      });
+  };

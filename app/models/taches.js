@@ -14,12 +14,12 @@ module.exports = (sequelize, DataTypes) => {
       // mandefa
       this.hasOne(models.TacheAlerte);
       this.hasOne(models.Historique);
-      this.hasOne(models.Commentaire);
       this.hasOne(models.SousTache);
       this.hasOne(models.ProblemeTache);
 
 
       this.belongsTo(models.Projet);
+      this.belongsTo(models.User);
       this.belongsTo(models.Statut);
       this.belongsTo(models.Priorite);
       // this.belongsTo(models.Projets);    
@@ -27,12 +27,11 @@ module.exports = (sequelize, DataTypes) => {
 
   }
   Taches.init({
-    titre: { type: DataTypes.STRING, allowNull: false },
     debut: { type: DataTypes.DATEONLY, allowNull: false },
     fin: { type:DataTypes.DATEONLY, allowNull: false },
     // titre: DataTypes.STRING,
-    description: { type: DataTypes.STRING, allowNull: false },
-    output: { type: DataTypes.STRING, allowNull: false },
+    description: { type: DataTypes.STRING(200), allowNull: false },
+    output: { type: DataTypes.STRING(200), allowNull: false },
     estAlerteur: { type: DataTypes.BOOLEAN, allowNull: false }
   }, {
     createdAt: false,

@@ -12,6 +12,9 @@ module.exports = function (app) {
     });
 
     app.put("/api/user/Update",controlerUser.UpdateUser);
+    app.put("/api/user/Modif",controlerUser.UpdateUserMobile);
+    app.get("/api/user/findOne/:idUser",controlerUser.getUser);
+    app.get("/api/user/findByDept/:idDept",controlerUser.getUserByDept);
     // app.get("/api/test/all", controlerUser.adminBoard);
 
 

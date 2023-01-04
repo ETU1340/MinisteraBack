@@ -12,10 +12,12 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.hasOne(models.Projet);
+      this.hasOne(models.User);
     }
   }
   Departement.init({
-    intitule: {type:DataTypes.STRING,allowNull:false}
+    intitule: {type:DataTypes.STRING(20),allowNull:false},
+    glossaire:{type:DataTypes.STRING(100),allowNull:false}
 
   }, {
     createdAt: false,

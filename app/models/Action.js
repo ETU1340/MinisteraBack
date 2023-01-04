@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Action.init({
     label: {
-     type:DataTypes.STRING,allowNull:false
+     type:DataTypes.STRING(20),allowNull:false
     },
     value:
     {

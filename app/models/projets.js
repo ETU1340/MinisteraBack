@@ -20,8 +20,12 @@ module.exports = (sequelize, DataTypes) => {
     debut: { type:DataTypes.DATEONLY, allowNull: false },
     fin: { type:DataTypes.DATEONLY, allowNull: false },
     titre: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(50),
       unique: true,
+      allowNull: false
+    },
+    description:{
+      type:DataTypes.TEXT,
       allowNull: false
     },
     latitude: {
@@ -31,7 +35,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DOUBLE, allowNull: false
     },
     color: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING(20),
+      unique:true
     }
   }, {
     createdAt: false,

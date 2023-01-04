@@ -14,6 +14,19 @@ exports.getAllDept = (req, res) => {
     });
 };
 
+
+exports.getDept = (req, res) => {
+  console.log("================================");
+  DepartementModel.findAll({where:{id:req.params.idDept}}).then(data => {
+    res.send(data);
+  })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving tutorials."
+      });
+    });
+};
 exports.AjoutDept = (req, res) => {
   console.log("================================");
   DepartementModel.create({

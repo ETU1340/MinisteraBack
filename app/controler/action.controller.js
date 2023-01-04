@@ -4,6 +4,7 @@ const ActionModel = models.Action;
 
 exports.UpdateAction = (req, res) => {
   // console.log(req.params);
+  console.log(req.body);
   // console.log('ilay nandrasan', req.body.PrioriteId);
   ActionModel.update(
     {
@@ -18,3 +19,17 @@ exports.UpdateAction = (req, res) => {
       // res.status(500).send({ message: err.message });
     });
 };
+
+
+exports.getAction= (req, res) => {
+  console.log(req.params);
+  ActionModel.findAll({where: { RoleId: req.params.idRole}})
+      .then(action => {
+          res.send(action);
+      })
+      .catch(err => {
+          res.status(500).send({ message: err.message });
+      });
+};
+
+

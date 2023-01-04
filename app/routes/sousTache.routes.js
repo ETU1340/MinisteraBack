@@ -6,6 +6,8 @@ module.exports = function (app) {
 
     //getAvancment
     app.get("/api/sousTache/avancement/:TacheId", controlerSousTache.getAvancement);
+     //verifieST
+     app.get("/api/sousTache/verifie/:TacheId", controlerSousTache.VerifieST);
 
     //save SousTache
     app.post("/api/sousTache/save", controlerSousTache.saveSousTache);
@@ -16,6 +18,6 @@ module.exports = function (app) {
     //update massive de tout les checklist
     app.put("/api/sousTache/endAllChecklist/:TacheId", controlerSousTache.endAllChecklist);
  
- //delete
- app.delete("/api/sousTache/deleteMobile/:idTache", controlerSousTache.delete);
+    //delete
+    app.delete("/api/sousTache/deleteMobile/:idTache", controlerSousTache.deleteMobile);
 }

@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   TacheAlerte.init({
-    dateAlerte: {type:DataTypes.DATEONLY,allowNull:false}
+    dateAlerte: {type:DataTypes.DATEONLY,allowNull:false},
+    typeAlerte:{type:DataTypes.INTEGER,allowNull:false}
   }, {
     createdAt: false,
     updatedAt: false,

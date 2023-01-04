@@ -36,6 +36,8 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         sequelize,
         modelName: 'SousTache',
+        createdAt: false,
+        updatedAt: false,
         freezeTableName: true,
 
     });

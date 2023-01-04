@@ -9,19 +9,14 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
-      //   models.Role.belongsToMany(this, {
-      //     through: "user_roles",
-      //     foreignKey: "roleId",
-      //     otherKey: "userId"
-      // });
+     static associate(models) {
+      this.belongsTo(models.Role);
+      this.belongsTo(models.Departement);
 
-      // models.User.belongsToMany(this, {
-      //     through: "user_roles",
-      //     foreignKey: "userId",
-      //     otherKey: "roleId"
-      // });
-    }
+
+      this.hasOne(models.Commentaire);
+      this.hasOne(models.Tache);
+      }
   }
   User.init({
     email: {
@@ -32,13 +27,17 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
       allowNull: false
     },
-    username: { type: DataTypes.STRING, allowNull: false },
-    password: { type: DataTypes.STRING, allowNull: false },
+    username: { type: DataTypes.STRING(50), allowNull: false },
+    password: { type: DataTypes.STRING(100), allowNull: false },
     isActive: { type: DataTypes.BOOLEAN, allowNull: false },
-    initiation: { type: DataTypes.BOOLEAN, defaultValue: false }
+    initiation: { type: DataTypes.BOOLEAN, defaultValue: false },
+    photo:{type: DataTypes.TEXT, allowNull: false }
   }, {
     sequelize,
     modelName: 'User',
+    createdAt: false,
+    updatedAt: false,
+    freezeTableName: true
   });
   return User;
 };
