@@ -15,8 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Priorite.init({
-    id: { type: DataTypes.INTEGER, primaryKey: true },
-    labele: {type:DataTypes.STRING,allowNull:false},
+    labele: {type:DataTypes.STRING(20),allowNull:false},
     config: {type:DataTypes.DECIMAL,allowNull:false}
   }, {
     createdAt: false,

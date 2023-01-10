@@ -3,7 +3,7 @@ const {
     Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-    class Commentaire extends Model {
+    class  Commentaire extends Model {
         /**
          * Helper method for defining associations.
          * This method is not a part of Sequelize lifecycle.
@@ -11,11 +11,13 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-            this.belongsTo(models.Tache);
+            this.belongsTo(models.User);
         }
     }
     Commentaire.init({
-        intitule: { type: DataTypes.TEXT, allowNull: false }
+        commentaire: { type:DataTypes.TEXT, allowNull: false },
+        typeCom: { type:DataTypes.INTEGER, allowNull: false },
+        idObjet:{ type:DataTypes.INTEGER, allowNull: false }
 
     }, {
         // createdAt: false,
@@ -24,5 +26,5 @@ module.exports = (sequelize, DataTypes) => {
         modelName: 'Commentaire',
         freezeTableName: true
     });
-    return Commentaire;
+    return  Commentaire;
 };

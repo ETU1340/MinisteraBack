@@ -1,6 +1,6 @@
 const models = require("../models");
 const SousTacheModel = models.SousTache;
-
+const { QueryTypes } = require('sequelize');
 exports.getSousTacheByTache = (req, res) => {
     // console.log('----------------------_>>>>>', req.params.TacheId);
     SousTacheModel.findAll({ where: { TacheId: req.params.TacheId } })
@@ -37,6 +37,18 @@ exports.updateSousTache = (req, res) => {
         res.send(er);
     })
 };
+
+exports.updateSousTacheMobile = (req, res) => {
+    console.log(req.body);
+    SousTacheModel.update(
+        { isChecked: req.body.isChecked,labele: req.body.labele },
+        { where: { id: req.body.id } }
+    ).then(rep => {
+        res.status(200).send(rep);
+    }).catch(er => {
+       console.log(er);
+    })
+};
 exports.delete = (req, res) => {
     SousTacheModel.destroy(
         { where: { id: req.body.id } }
@@ -44,6 +56,15 @@ exports.delete = (req, res) => {
         res.status(200).send(rep);
     }).catch(er => {
         res.send(er);
+    })
+};
+exports.deleteMobile = (req, res) => {
+    SousTacheModel.destroy(
+        { where: { id: req.params.idTache } }
+    ).then(rep => {
+        res.send({rep});
+    }).catch(er => {
+        console.log(er);
     })
 };
 
@@ -63,12 +84,48 @@ exports.getAvancement = (req, res) => {
                 terminer++;
             }
         }
+        // avancement = null ? Math.round(terminer * 100 / total) : 0;
         avancement = Math.round(terminer * 100 / total);
         res.send({ total, terminer, avancement });
     }).catch(er => {
         console.log('JKKJKJKJKJk', er);
         res.send(er);
     })
-
 };
 
+exports.endAllChecklist = (req, res) => {
+    SousTacheModel.update(
+        { isChecked: true },
+        { where: { TacheId: req.params.TacheId } }
+    ).then(rep => {
+        // let terminer = 0;
+        // let avancement = 0;
+        // let total = rep.length;
+        // for (let i = 0; i < total; i++) {
+        //     if (rep[i].isChecked) {
+        //         terminer++;
+        //     }
+        // }
+
+        // avancement = null ? Math.round(terminer * 100 / total) : 0;
+        res.send(rep);
+    }).catch(er => {
+        console.log('JKKJKJKJKJk', er);
+        res.send(er);
+    })
+};
+
+exports.VerifieST = (req, res) => {
+    console.log(req.params)
+   models.sequelize.query(
+      'select count(id) as nbst from "public"."SousTache" where "isChecked"=false and  "TacheId"=:tacheId ',
+      {
+        replacements:{tacheId:req.params.TacheId},
+        type: QueryTypes.SELECT
+      }).then(data => {
+    res.send(data);
+    })
+    .catch(err => {
+   console.log(err);
+      });
+  };

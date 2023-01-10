@@ -5,28 +5,27 @@ const {
 module.exports = (sequelize, DataTypes) => {
 
   class Projet extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+
     static associate(models) {
       // define association here
       this.hasOne(models.Tache);
-      this.belongsTo(models.Departement);
-      this.belongsTo(models.Region);
+      // this.belongsTo(models.Departement);
+      // this.belongsTo(models.Region);
 
 
     }
   }
 
   Projet.init({
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    debut: { type: DataTypes.DATE, allowNull: false },
-    fin: { type: DataTypes.DATE, allowNull: false },
+    debut: { type:DataTypes.DATEONLY, allowNull: false },
+    fin: { type:DataTypes.DATEONLY, allowNull: false },
     titre: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(50),
       unique: true,
+      allowNull: false
+    },
+    description:{
+      type:DataTypes.TEXT,
       allowNull: false
     },
     latitude: {
@@ -34,6 +33,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     longitude: {
       type: DataTypes.DOUBLE, allowNull: false
+    },
+    color: {
+      type: DataTypes.STRING(20),
+      unique:true
     }
   }, {
     createdAt: false,
@@ -41,7 +44,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Projet',
     freezeTableName: true,
-
   });
   return Projet;
 };

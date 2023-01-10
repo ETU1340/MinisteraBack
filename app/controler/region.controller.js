@@ -1,5 +1,5 @@
 const models = require("../models");
-const RegionModel = models.region;
+const RegionModel = models.Region;
 exports.getAllRegion = (req, res) => {
   console.log("================================");
   RegionModel.findAll().then(data => {

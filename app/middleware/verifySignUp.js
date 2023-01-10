@@ -8,30 +8,35 @@ checkDuplicateUsernameOrEmail = (req, res, next) => {
     // console.log( 'gggggggggggggggggggggggggggggggggg'+req.body.email);
     // console.log( 'gggggggggggggggggggggggggggggggggg'+req.body.password);
     console.log(UserModel);
-    UserModel.findOne({
+
+
+    UserModel.findAll({
         where: {
             username: req.body.username
         }
     }).then(user => {
-        console.log('Im in chechDuplicatedUsrNameOrEmail', user);
-        if (user) {
-            return res.status(400).send({
-                message: "Failed! Username is already in use!"
-            });
+        // console.log('Im in chechDuplicatedUsrNameOrEmail', user);
+        console.log(user.length);
+        if (user.length>0) {
+            return res.send({message:"Erreur! nom deja utilisé!",error:true});
         }
+      
+            UserModel.findAll({
+                where: {
+                    email: req.body.email
+                }
+            }).then(user => {
+                if (user.length>0) {
+                    console.log('no email');
+                    return res.send({
+                        message: "Erreur! email deja utilisé!",error:true
+                    });
+                }
+                next();
+            });
+        
         // Email
-        UserModel.findOne({
-            where: {
-                email: req.body.email
-            }
-        }).then(user => {
-            if (user) {
-                return res.status(400).send({
-                    message: "Failed! Email is already in use!"
-                });
-            }
-            next();
-        });
+       
     });
 
     // UserModel.create({

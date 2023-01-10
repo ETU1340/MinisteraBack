@@ -1,26 +1,38 @@
 const models = require("../models");
-const DepartementModel = models.departement;
-exports.getAllDept=(req, res)=> {
-console.log("================================");
-DepartementModel.findAll().then(data => {
+const DepartementModel = models.Departement;
+
+exports.getAllDept = (req, res) => {
+  console.log("================================");
+  DepartementModel.findAll().then(data => {
     res.send(data);
   })
-  .catch(err => {
-    res.status(500).send({
-      message:
-        err.message || "Some error occurred while retrieving tutorials."
-        });
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving tutorials."
+      });
     });
 };
 
 
-exports.AjoutDept=(req, res)=> {
+exports.getDept = (req, res) => {
+  console.log("================================");
+  DepartementModel.findAll({where:{id:req.params.idDept}}).then(data => {
+    res.send(data);
+  })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving tutorials."
+      });
+    });
+};
+exports.AjoutDept = (req, res) => {
   console.log("================================");
   DepartementModel.create({
     intitule: req.body.intitule
-}).then(res.send({ message: "Departement was registered successfully!" }))
-.catch(err => {
-  res.status(500).send({message:err.message });
-  });
-
+  }).then(res.send({ message: "Departement was registered successfully!" }))
+    .catch(err => {
+      res.status(500).send({ message: err.message });
+    });
 };
